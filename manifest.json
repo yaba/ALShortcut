@@ -1,0 +1,12 @@
+{
+   "background": {
+      "persistent": false,
+      "scripts": [ "background.js" ]
+   },
+ 
+   "description": "Open Applens!",
+   "manifest_version": 2,
+   "name": "Applens",
+   "permissions": [ "contextMenus" ],
+   "version": "1.0.0"
+}
