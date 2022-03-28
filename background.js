@@ -24,6 +24,14 @@ chrome.contextMenus.create({
   id: "mainpage",
   contexts: ["selection"],
 });
+
+chrome.contextMenus.create({
+  title: "Observer",
+  parentId: "menuALD",
+  id: "obsv",
+  contexts: ["selection"],
+});
+
 /*
 chrome.contextMenus.create({
   title: "Avail. & Performance",
@@ -134,11 +142,25 @@ chrome.contextMenus.create({
 
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
   var trackerURL = "https://applens.azurewebsites.net/";
+  var obsvURL = "https://wawsobserver.azurewebsites.windows.net/sites/";
+  //  var spos = document.body.innerHTML.search("ResourceUri: ");
+  //  var epos = document.body.innerHTML.search("Note: See External Reference");
+  //  var ResourceUri = document.body.innerHTML.substring(spos, (epos - spos));
+  //  alert(spos+"-"+epos+"-"+ResourceUri);
   var detectURL = "/detectors/";
   if (tab) {
     switch (info.menuItemId) {
       case "mainpage":
         chrome.tabs.create({ url: trackerURL + info.selectionText });
+        break;
+      case "obsv":
+        chrome.tabs.create({
+          url:
+            obsvURL +
+            info.selectionText.substring(
+              info.selectionText.lastIndexOf("/") + 1
+            ),
+        });
         break;
       case "d_1":
         chrome.tabs.create({
